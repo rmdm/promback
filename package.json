@@ -1,0 +1,31 @@
+{
+  "name": "promback",
+  "version": "0.1.0",
+  "description": "Level promises/callbacks landscape",
+  "main": "promback.js",
+  "scripts": {
+    "test": "npm run lint && npm run mocha",
+    "mocha": "mocha --recursive test",
+    "lint": "eslint promback.js",
+    "cover": "nyc npm run mocha"
+  },
+  "keywords": [
+    "promisify",
+    "promise",
+    "callback",
+    "promback"
+  ],
+  "author": "rmdm",
+  "license": "MIT",
+  "devDependencies": {
+    "aigle": "^1.12.0",
+    "bluebird": "^3.5.2",
+    "es6-promise": "^4.2.5",
+    "eslint": "^5.6.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.0.1",
+    "promise": "^8.0.2",
+    "promise-polyfill": "^8.1.0",
+    "when": "^3.7.8"
+  }
+}
