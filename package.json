@@ -28,5 +28,8 @@
     "promise": "^8.0.2",
     "promise-polyfill": "^8.1.0",
     "when": "^3.7.8"
-  }
+  },
+  "files": [
+    "promback.js"
+  ]
 }

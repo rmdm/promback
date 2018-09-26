@@ -112,7 +112,8 @@ function testUsing (contextTitle, promiseLib) {
                 assert.deepStrictEqual(result, [ 'a', 10 ])
             })
 
-            it('resolves when passed function firstly resolves', async function () {
+            it('resolves when passed function firstly resolves',
+                async function () {
 
                 const fn = promback(function (v, cb) {
                     setTimeout(function () { cb(null, v) }, 10)

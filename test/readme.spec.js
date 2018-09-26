@@ -15,7 +15,7 @@ describe('readme example', function () {
         console.log = log
     })
 
-    it('succeeds', async function () {
+    it('logs properly', async function () {
 
         const timeout = promback(function (ms, cb) {
             setTimeout(cb, ms)
@@ -36,5 +36,18 @@ describe('readme example', function () {
             .then(console.log) // logs 10
 
         assert.deepStrictEqual(output, [ [ 5 ], [ 10 ] ])
+    })
+
+    it('uses bluebird promise', function () {
+
+        const bluebird = require('bluebird')
+        const promback = require('../promback').using(bluebird)
+
+        // timeout returns a bluebird promise now
+        const timeout = promback(function (ms, cb) {
+            setTimeout(cb, ms)
+        })
+
+        assert(timeout(10) instanceof bluebird)
     })
 })
