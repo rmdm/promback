@@ -1,6 +1,6 @@
 {
   "name": "promback",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Level promises/callbacks landscape",
   "main": "promback.js",
   "scripts": {
@@ -20,6 +20,7 @@
   "devDependencies": {
     "aigle": "^1.12.0",
     "bluebird": "^3.5.2",
+    "coveralls": "^3.0.2",
     "es6-promise": "^4.2.5",
     "eslint": "^5.6.0",
     "mocha": "^5.2.0",

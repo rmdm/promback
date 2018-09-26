@@ -1,7 +1,7 @@
 promback
 ========
 
-Wraps promise-returning/callback-calling function and returns another one that returns promise fulfilled on corresponding event(wrapped promise fulfilled/callback called). Especially useful for library implementers to both facilitate support and level landscape of different asynchronicity mechanisms.
+Wraps a promise-returning/callback-calling function and returns another promise-returning one. Especially useful for library writers to both facilitate support and level landscape of different asynchronicity mechanisms.
 
 Install
 =======
@@ -40,3 +40,14 @@ API
 ===
 
 `promback (Function fn) -> async Function`
+
+Wraps passed function and returns another one. The prombacked function passes its arguments to wrapped one and returns a promise fulfilled in one of the following cases:
+
+    - wrapped function called callback added to the arguments,
+    - a promise returned by the wrapped function is fulfilled,
+    - wrapped function returned a value immediately,
+    - wrapped function thrown an error.
+
+`promback.using (PromiseLib) -> promback`
+
+By default, **promback** module function uses the `Promise` defined globally. With `using` one able to create other instances of **promback** that will use specified `PromiseLib` to create the promise returned from prombacked function. Please note, that default **promback** will still use global `Promise`.
