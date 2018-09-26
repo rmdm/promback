@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/rmdm/promback.svg?branch=master)](https://travis-ci.org/rmdm/promback)
+[![Coverage Status](https://coveralls.io/repos/github/rmdm/promback/badge.svg?branch=master)](https://coveralls.io/github/rmdm/promback?branch=master)
+
 promback
 ========
 
