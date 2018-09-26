@@ -16,6 +16,10 @@ function using (PromiseLib) {
 
             return new PromiseLib(function (resolve, reject) {
 
+                if (fn.length !== args.length + 1) {
+                    return resolve(fn.apply(that, args))
+                }
+
                 const result = fn.call(that, ... args, function (err, value) {
                     if (err) { reject(err) }
                     resolve(value)

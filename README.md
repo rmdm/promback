@@ -28,15 +28,9 @@ const resolveFive = promback(function () {
     return Promise.resolve(5)
 })
 
-const resolveTen = promback(function () {
-    return 10
-})
-
 timeout(100)
 .then(resolveFive)
 .then(console.log) // logs 5
-.then(resolveTen)
-.then(console.log) // logs 10
 ```
 
 API
@@ -44,12 +38,16 @@ API
 
 ### `promback (Function fn) -> async Function`
 
-Wraps passed function and returns another one. The prombacked function passes its arguments to wrapped one and returns a promise fulfilled on one of the following cases:
+Wraps passed function and returns prombacked one. The prombacked function passes its arguments to the wrapped one and returns a promise fulfilled on one of the following cases:
 
 - wrapped function called callback added to the arguments,
 - a promise returned by the wrapped function is fulfilled,
 - wrapped function returned a value immediately,
 - wrapped function thrown an error.
+
+If the number of arguments of a prombacked function call does not match to the number of arguments expected by the wrapped function - 1, then callback is not passed to the wrapped function and its returned value resolved directly. This is done so to prevent passing an unexpected argument.
+
+The passed callback signature is the normal node-style callback `(err, value)`.
 
 Prombacked function's `this` reference left not bound to any particular object and is still dynamic.
 

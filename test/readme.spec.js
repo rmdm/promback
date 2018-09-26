@@ -32,10 +32,8 @@ describe('readme example', function () {
         await timeout(100)
             .then(resolveFive)
             .then(console.log) // logs 5
-            .then(resolveTen)
-            .then(console.log) // logs 10
 
-        assert.deepStrictEqual(output, [ [ 5 ], [ 10 ] ])
+        assert.deepStrictEqual(output, [ [ 5 ] ])
     })
 
     it('uses bluebird promise', function () {

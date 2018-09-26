@@ -150,6 +150,18 @@ function testUsing (contextTitle, promiseLib) {
 
                 assert.strictEqual(result, obj)
             })
+
+            it('does not hang when cb not specified in function',
+                async function () {
+
+                const fn = promback(function () {
+
+                })
+
+                const result = await fn()
+
+                assert.strictEqual(result, undefined)
+            })
         })
     })
 }
