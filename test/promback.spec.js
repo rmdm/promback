@@ -37,11 +37,11 @@ function testUsing (contextTitle, promiseLib) {
 
             it('rejects when passed function throws', async function () {
 
-                const err = new Error()
+                const err = new Error('an error')
 
                 const fn = promback(function () { throw err })
 
-                await assert.rejects(function () {
+                await assertRejects(function () {
                     return fn()
                 }, function (e) {
                     return err === e
@@ -50,11 +50,11 @@ function testUsing (contextTitle, promiseLib) {
 
             it('rejects when passed function rejects', async function () {
 
-                const err = new Error()
+                const err = new Error('an error')
 
                 const fn = promback(function () { return Promise.reject(err) })
 
-                await assert.rejects(function () {
+                await assertRejects(function () {
                     return fn()
                 }, function (e) {
                     return err === e
@@ -64,13 +64,13 @@ function testUsing (contextTitle, promiseLib) {
             it('rejects when passed function calls callback with an error',
                 async function () {
 
-                const err = new Error()
+                const err = new Error('an error')
 
                 const fn = promback(function (cb) {
                     cb(err)
                 })
 
-                await assert.rejects(function () {
+                await assertRejects(function () {
                     return fn()
                 }, function (e) {
                     return err === e
@@ -152,4 +152,19 @@ function testUsing (contextTitle, promiseLib) {
             })
         })
     })
+}
+
+async function assertRejects (rejecter, predicate) {
+
+    if (assert.rejects) {
+        return assert.rejects(rejecter, predicate)
+    }
+
+    try {
+        await rejecter()
+        throw new Error('Rejection expected.')
+    } catch (err) {
+        if (predicate(err)) { return }
+        throw err
+    }
 }
