@@ -4,6 +4,7 @@
   "description": "Level promises/callbacks landscape",
   "main": "promback.js",
   "scripts": {
+    "ci": "npm run lint && npm run cover",
     "test": "npm run lint && npm run mocha",
     "mocha": "mocha --recursive test",
     "lint": "eslint promback.js",
