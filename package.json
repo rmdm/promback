@@ -1,6 +1,6 @@
 {
   "name": "promback",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Level promises/callbacks landscape",
   "main": "promback.js",
   "scripts": {

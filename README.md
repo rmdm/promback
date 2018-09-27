@@ -33,6 +33,63 @@ timeout(100)
 .then(console.log) // logs 5
 ```
 
+How it is useful for library writers
+====================================
+
+Suppose that your library has a method that expects an async function from your users:
+
+```javascript
+const mylib = require('mylib')
+
+mylib.passMeSomethingAsync(/* something async */)
+```
+
+It calls the async function with some library-specific arguments and expects some library-expected value to be returned. So, suppose for the purposes of the example that the arguments are `a` and `b` and the value is `x`. **promback** allows you to effortlessly provide your users with the support of any asynchronicity mechanisms to their liking and convenience, be it callbacks:
+
+```javascript
+mylib.passMeSomethingAsync(function (a, b, cb) {
+    getXWithCallbackBecauseIAmAQualifiedUserAndCanDoIt(a, b, function (err, x) {
+        cb(err, x)
+    })
+})
+```
+
+, promises:
+
+```javascript
+mylib.passMeSomethingAsync(function (a, b) {
+    return getXWith___WellActuallyIHaveAPromiseForThat(a, b)
+    .then(function (x) {
+        return x
+    })
+})
+```
+
+or even async functions:
+
+```javascript
+mylib.passMeSomethingAsync(async function (a, b) {
+    const x = await pfff___PromisesAreSoLastCentury(a, b)
+    return x
+})
+```
+
+_Note, that in the above examples the funky functions may be passed directly to the `passMeSomethingAsync`. It is shown in more details just for sake of illustration._
+
+The only thing needed to be done in `passMeSomethingAsync` is wrapping the async function with **promback**:
+
+```javascript
+// deep inside mylib
+mylib.passMeSomethingAsync = async function (getX) {
+    getX = promback(getX)
+    // get a and b from somewhere
+    const x = await getX(a, b)
+    // use x somehow
+}
+```
+
+And now you don't have to think on how to handle all this stuff anymore!
+
 API
 ===
 
