@@ -93,7 +93,7 @@ And now you don't have to think on how to handle all this stuff anymore!
 How it is different from a promisify
 ====================================
 
-Different flavors of `promisify` does not handle promise-returning functions.
+Different flavors of `promisify` does not handle promise-returning functions and is going to hang when you will try to call a promisifed promise-returning function. **promback** on the other hand is designed to handle both promises and callbacks.
 
 API
 ===
