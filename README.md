@@ -90,6 +90,11 @@ mylib.passMeSomethingAsync = async function (getX) {
 
 And now you don't have to think on how to handle all this stuff anymore!
 
+How it is different from a promisify
+====================================
+
+Different flavors of `promisify` does not handle promise-returning functions.
+
 API
 ===
 
