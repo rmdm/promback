@@ -4,7 +4,9 @@
 promback
 ========
 
-Wraps a promise-returning/callback-calling function and returns another promise-returning one. Especially useful for library writers to both facilitate support and level landscape of different asynchronicity mechanisms. It is also tiny :)
+Wraps a promise-returning/callback-calling function and returns another promise-returning one.
+
+Especially useful for api or library writers, where an async (i.e. callback-calling or promise-returning) function is expected, to wrap it and turn into a promise-returning one. This simplifies implimenting the api and lets the users of the api to either use a callback (passed by promback along with the api-dependend params) or return a promise to their liking and convenience and, simultaneously, on the api side lets you to only work with promises or `async` functions.
 
 Install
 =======
@@ -24,13 +26,8 @@ const timeout = promback(function (ms, cb) {
     setTimeout(cb, ms)
 })
 
-const resolveFive = promback(function () {
-    return Promise.resolve(5)
-})
-
 timeout(100)
-.then(resolveFive)
-.then(console.log) // logs 5
+.then(/* do something */)
 ```
 
 How it is useful for library writers
@@ -93,7 +90,7 @@ And now you don't have to think on how to handle all this stuff anymore!
 How it is different from a promisify
 ====================================
 
-Different flavors of `promisify` does not handle promise-returning functions and is going to hang when you will try to call a promisifed promise-returning function. **promback** on the other hand is designed to handle both promises and callbacks.
+Different flavors of `promisify` does not handle promise-returning functions well and is going to hang when you will try to call a promisifed promise-returning function. **promback** on the other hand is designed to handle both promises and callbacks.
 
 API
 ===

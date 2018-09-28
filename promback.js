@@ -21,7 +21,7 @@ function using (PromiseLib) {
                 }
 
                 const result = fn.call(that, ... args, function (err, value) {
-                    if (err) { reject(err) }
+                    if (err) { return reject(err) }
                     resolve(value)
                 })
 
