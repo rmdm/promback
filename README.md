@@ -6,7 +6,7 @@ promback
 
 Wraps a promise-returning/callback-calling function and returns another promise-returning one.
 
-Especially useful for api or library writers, where an async (i.e. callback-calling or promise-returning) function is expected, to wrap it and turn into a promise-returning one. This simplifies implimenting the api and lets the users of the api to either use a callback (passed by promback along with the api-dependend params) or return a promise to their liking and convenience and, simultaneously, on the api side lets you to only work with promises or `async` functions.
+Especially useful for api or library writers, where an async (i.e. callback-calling or promise-returning) function is expected, to wrap it and turn into a promise-returning one. This simplifies implimenting the api and lets the users of the api to either use a callback (passed by promback along with the api-dependend params) or return a promise to their liking and convenience and, simultaneously, on the api side lets you to only work with promises.
 
 Install
 =======
