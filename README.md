@@ -22,12 +22,7 @@ Usage
 
 const promback = require('promback')
 
-const timeout = promback(function (ms, cb) {
-    setTimeout(cb, ms)
-})
-
-timeout(100)
-.then(/* do something */)
+const prombacked = promback(/* a function */)
 ```
 
 How it is useful for library writers
