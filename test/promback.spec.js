@@ -112,24 +112,10 @@ function testUsing (contextTitle, promiseLib) {
                 assert.deepStrictEqual(result, [ 'a', 10 ])
             })
 
-            it('resolves when passed function firstly resolves',
-                async function () {
+            it('awaits cb if it is specified', async function () {
 
                 const fn = promback(function (v, cb) {
                     setTimeout(function () { cb(null, v) }, 10)
-                    return Promise.resolve(v * 2)
-                })
-
-                const result = await fn(7)
-
-                assert.deepStrictEqual(result, 14)
-            })
-
-            it('resolves when passed function firstly calls callback',
-                async function () {
-
-                const fn = promback(function (v, cb) {
-                    cb(null, v)
                     return Promise.resolve(v * 2)
                 })
 
@@ -140,7 +126,7 @@ function testUsing (contextTitle, promiseLib) {
 
             it('preserves `this` reference', async function () {
 
-                const fn = promback(function (cb) {
+                const fn = promback(function () {
                     return this
                 })
 
