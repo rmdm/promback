@@ -148,6 +148,20 @@ function testUsing (contextTitle, promiseLib) {
 
                 assert.strictEqual(result, undefined)
             })
+
+            it('passes cb as the last arg, when the function expects more args than passed',
+                async function () {
+
+                function testFn (a, b, c, cb) {
+                    cb(null, [ a, b, c ])
+                }
+
+                const fn = promback(testFn)
+
+                const result = await fn(1)
+
+                assert.deepStrictEqual(result, [ 1, undefined, undefined ])
+            })
         })
     })
 }

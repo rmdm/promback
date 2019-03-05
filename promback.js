@@ -16,14 +16,21 @@ function using (PromiseLib) {
 
             return new PromiseLib(function (resolve, reject) {
 
-                if (fn.length !== args.length + 1) {
+                const argsDiff = fn.length - args.length
+
+                if (argsDiff <= 0) {
                     return resolve(fn.apply(that, args))
                 }
 
-                fn.call(that, ... args, function (err, value) {
-                    if (err) { return reject(err) }
-                    resolve(value)
-                })
+                fn.call(
+                    that,
+                    ... args,
+                    ... new Array(argsDiff - 1),
+                    function (err, value) {
+                        if (err) { return reject(err) }
+                        resolve(value)
+                    }
+                )
             })
         }
     }
